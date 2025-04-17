@@ -1,36 +1,33 @@
 package com.dh.DentalClinicMVC.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "Dentists")
 public class Dentist {
 
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name ="dentist_id")
+    private Long id;
 
+    @Column(name="registration")
     private Integer registration;
 
+    @Column(name ="name")
     private String name;
 
+    @Column(name = "last_name")
     private String lastName;
 
     public Dentist() {
     }
 
-    public Dentist(Integer id, Integer registration, String name, String lastName) {
-        this.id = id;
-        this.registration = registration;
-        this.name = name;
-        this.lastName = lastName;
-    }
-
-    public Dentist(Integer registration, String name, String lastName) {
-        this.registration = registration;
-        this.name = name;
-        this.lastName = lastName;
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

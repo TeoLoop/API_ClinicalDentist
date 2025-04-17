@@ -1,16 +1,21 @@
 package com.dh.DentalClinicMVC.controller;
 
 import com.dh.DentalClinicMVC.model.Patient;
-import com.dh.DentalClinicMVC.service.PatientService;
+import com.dh.DentalClinicMVC.service.IPatientService;
+import com.dh.DentalClinicMVC.service.impl.PatientService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/pacientes")
 public class PatientController {
 
-    PatientService patientService;
+    private IPatientService patientService;
 
-    public PatientController(PatientService patientService) {
+    @Autowired
+    public PatientController(IPatientService patientService) {
         this.patientService = patientService;
     }
 
@@ -26,5 +31,8 @@ public class PatientController {
         patientService.update(patient);
     }
 
-
+    @GetMapping
+    public List<Patient> findAll(){
+        return patientService.findAll();
+    }
 }
