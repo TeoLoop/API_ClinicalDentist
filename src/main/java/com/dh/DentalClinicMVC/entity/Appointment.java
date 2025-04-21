@@ -1,4 +1,4 @@
-package com.dh.DentalClinicMVC.model;
+package com.dh.DentalClinicMVC.entity;
 
 import jakarta.persistence.*;
 
@@ -13,7 +13,10 @@ public class Appointment {
     @Column(name = "apointment_id")
     private Long id;
 
+    @ManyToOne
     private Patient patient;
+
+    @ManyToOne
     private Dentist dentist;
 
     @Column(name = "date")

@@ -1,6 +1,7 @@
 package com.dh.DentalClinicMVC.service.impl;
 
-import com.dh.DentalClinicMVC.model.Patient;
+import com.dh.DentalClinicMVC.entity.Patient;
+import com.dh.DentalClinicMVC.exception.ResourceNotFoundException;
 import com.dh.DentalClinicMVC.repository.PatientRepository;
 import com.dh.DentalClinicMVC.service.IPatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,16 @@ public class PatientService implements IPatientService {
     }
 
     @Override
-    public void delete(Long id) {
-        patientRepository.deleteById(id);
+    public void delete(Long id) throws ResourceNotFoundException {
+        Optional<Patient> patient = findById(id);
+
+        if (patient.isPresent()){
+            patientRepository.deleteById(id);
+        }else {
+            throw new ResourceNotFoundException("No se pudo eliminar el Paciente " + id + ", no se econtro en la BD");
+        }
+
+
     }
 
     @Override
