@@ -19,7 +19,7 @@ class PatientServiceTest {
 
     @Test
     void findById() {
-        Integer idPatient = 3;
+        Long idPatient = 3;
 
         // vamos a buscar al paciente
         Patient patient = patientService.findById(idPatient);
